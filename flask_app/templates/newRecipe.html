@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Share</title>
+</head>
+<body>
+    <div>
+        <h1>Add a New Recipe!</h1>
+        <div>
+            <a href="/success">back to recipes</a>
+            <a href="/">logout</a>
+        </div>
+    </div>
+    <form action="/recipeNew" method="post">
+        <h2>Add a New Recipe</h2>
+        {% with messages = get_flashed_messages(category_filter=['recipe']) %}
+            {% if messages %}
+            <div>
+                <strong>Flash</strong>
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+        <div>
+            <div>
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" name="name">
+                </div>
+                <div>
+                    <label for="description">Description:</label>
+                    <textarea name="description"  cols="30" rows="5"></textarea>
+                </div>
+                <div>
+                    <label for="instruction">Instructions:</label>
+                    <textarea name="instruction"  cols="30" rows="5"></textarea>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label for="date">Date Made:</label>
+                    <input type="date" name="date">
+                </div>
+                <label for="minute">Under 30 Minutes?:</label>
+                <div>
+                    <input type="radio" name="minute" value="0" >
+                    <label for="0">No</label>
+                </div>
+                <div>
+                    <input type="radio" name="minute" value="1">
+                    <label for="1">Yes</label>
+                </div>
+                <br>
+                <input type="submit" value="Add Recipe">
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

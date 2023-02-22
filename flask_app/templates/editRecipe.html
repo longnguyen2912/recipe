@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body>
+    <div>
+        <div>
+            Welcome,{{user.first_name}}.
+        </div>
+        <div>
+            <div><a href="/success">back to recipes</a></div>
+            <div><a href="/logout">Logout</a></div>
+        </div>
+    </div>
+    <form action="/update/recipe" method="post">
+        <h2>Edit Receipt</h2>
+        {% with messages = get_flashed_messages(category_filter=['recipe']) %}
+            {% if messages %}
+            <div>
+                <strong>FLASH</strong>
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+        <div>
+            <input name="id" value={{edit.id}}>
+            <div>
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" value="{{edit.name}}">
+                </div>
+                <div>
+                    <label for="description">Description:</label>
+                    <textarea name="description"  cols="30" rows="5">{{edit.description}}</textarea>
+                </div>
+                <div>
+                    <label for="instruction">Instructions:</label>
+                    <textarea name="instruction"  cols="30" rows="5">{{edit.instruction}}</textarea>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label for="date">Date Made:</label>
+                    <input type="date" name="date" value="{{edit.date.strftime('%Y-%m-%d')}}">
+                </div>
+                <label for="minute">Under 30 Minutes?:</label>
+                <div>
+                    <input type="radio" name="minute" value="0" >
+                    <label for="0" >Yes</label>
+                </div>
+                <div>
+                    <input type="radio" name="minute" value="1">
+                    <label for="1">No</label>
+                </div>
+                <br>
+                <input type="submit" value="Edit Recipe">
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
